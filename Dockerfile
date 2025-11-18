@@ -16,7 +16,7 @@ RUN dnf install -y \
         podman-docker \
         fuse-overlayfs \
         slirp4netns \
-        icu-libs
+        icu-libs \
     && dnf clean all
 
 # Install .NET 9 AspNetCore runtime globally
