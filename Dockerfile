@@ -12,6 +12,11 @@ RUN dnf install -y \
         findutils \
         which \
         hostname \
+        podman \
+        podman-docker \
+        fuse-overlayfs \
+        slirp4netns \
+        icu-libs
     && dnf clean all
 
 # Install .NET 9 AspNetCore runtime globally
@@ -21,6 +26,18 @@ RUN mkdir -p /usr/share/dotnet && \
         --runtime aspnetcore \
         --channel 9.0 && \
     ln -sf /usr/share/dotnet/dotnet /usr/bin/dotnet
+
+RUN mkdir -p /etc/containers && \
+    printf '%s\n' \
+'[storage]' \
+'driver = "vfs"' \
+'runroot = "/run/containers/storage"' \
+'graphroot = "/var/lib/containers/storage"' \
+'[''storage.options'']' \
+'mount_program = ""' \
+    > /etc/containers/storage.conf
+
+RUN ln -sf /usr/bin/podman /usr/local/bin/docker
 
 # Create /opt inside image (host will mount over this)
 RUN mkdir -p /opt

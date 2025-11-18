@@ -3,7 +3,7 @@ on: [push]
 
 env:
   REGISTRY: ghcr.io/${{ github.repository }}
-  IMAGE_NAME: federate
+  IMAGE_NAME: install
 
 jobs:
   build_container:
