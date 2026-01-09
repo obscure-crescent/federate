@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        platform: [linux/amd64,linux/aarch64,linux/ppc64le]
+        platform: [linux/amd64,linux/aarch64,linux/armv7]
       fail-fast: false
 
     steps:
